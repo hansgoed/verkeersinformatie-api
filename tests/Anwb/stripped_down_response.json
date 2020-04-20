@@ -1,0 +1,206 @@
+{
+  "dateTime": "20200420, 21:23",
+  "roadEntries": [
+    {
+      "road": "Road with 2 traffic jams, 2 roadworks & 2 radars !!!TODO no radars right now..!!!",
+      "roadType": "aWegen",
+      "events": {
+        "trafficJams": [
+          {
+            "msgNr": "237387638",
+            "from": "knp. Zaandam naar de A8 richting Beverwijk",
+            "fromLoc": {
+              "lat": 52.45778,
+              "lon": 4.83863
+            },
+            "to": "knp. Zaandam naar de A8 richting Beverwijk",
+            "toLoc": {
+              "lat": 52.45778,
+              "lon": 4.83863
+            },
+            "location": "A7 Hoorn richting Zaanstad",
+            "segStart": "Hoorn",
+            "segEnd": "Zaanstad",
+            "reason": "Wegwerkzaamheden. Verbindingsweg dicht.",
+            "description": "Bij knp. Zaandam naar de A8 richting Beverwijk. Wegwerkzaamheden. Verbindingsweg dicht.",
+            "events": [
+              {
+                "alertC": "701",
+                "text": "Wegwerkzaamheden"
+              },
+              {
+                "alertC": "478",
+                "text": "Verbindingsweg dicht"
+              }
+            ]
+          },
+          {
+            "msgNr": "237387640",
+            "from": "knp. Prins Clausplein naar de A4 richting Amsterdam",
+            "fromLoc": {
+              "lat": 52.06418,
+              "lon": 4.36734
+            },
+            "to": "knp. Prins Clausplein naar de A4 richting Amsterdam",
+            "toLoc": {
+              "lat": 52.06418,
+              "lon": 4.36734
+            },
+            "location": "A12 Den Haag richting Utrecht",
+            "segStart": "Den Haag",
+            "segEnd": "Utrecht",
+            "reason": "Wegwerkzaamheden. Verbindingsweg dicht. Het verkeer wordt geadviseerd een andere route te kiezen",
+            "description": "Bij knp. Prins Clausplein naar de A4 richting Amsterdam. Wegwerkzaamheden. Verbindingsweg dicht. Het verkeer wordt geadviseerd een andere route te kiezen",
+            "events": [
+              {
+                "alertC": "701",
+                "text": "Wegwerkzaamheden"
+              },
+              {
+                "alertC": "478",
+                "text": "Verbindingsweg dicht"
+              }
+            ]
+          }
+        ],
+        "roadWorks": [
+          {
+            "msgNr": "237347015",
+            "from": "Deventer-Oost",
+            "fromLoc": {
+              "lat": 52.23694,
+              "lon": 6.21645
+            },
+            "to": "Deventer-Oost",
+            "toLoc": {
+              "lat": 52.23694,
+              "lon": 6.21645
+            },
+            "location": "A1 Apeldoorn richting Hengelo",
+            "segStart": "Apeldoorn",
+            "segEnd": "Hengelo",
+            "start": "2020-04-20T20:00:00",
+            "startDate": "20 April 2020 22:00 uur",
+            "stop": "2020-04-22T04:00:00",
+            "stopDate": "22 April 2020 06:00 uur",
+            "reason": "De afrit is dicht. Van 20 April 2020 22:00 uur tot 22 April 2020 06:00 uur.",
+            "description": "Bij Deventer-Oost. De afrit is dicht. Van 20 April 2020 22:00 uur tot 22 April 2020 06:00 uur.",
+            "events": [
+              {
+                "alertC": "407",
+                "text": "De afrit is dicht"
+              }
+            ]
+          },
+          {
+            "msgNr": "237373006",
+            "from": "Muiden",
+            "fromLoc": {
+              "lat": 52.32795,
+              "lon": 5.0486
+            },
+            "to": "Muiden",
+            "toLoc": {
+              "lat": 52.32795,
+              "lon": 5.0486
+            },
+            "location": "A1 Amsterdam richting Amersfoort",
+            "segStart": "Amsterdam",
+            "segEnd": "Amersfoort",
+            "start": "2020-04-20T21:00:00",
+            "startDate": "20 April 2020 23:00 uur",
+            "stop": "2020-04-21T03:00:00",
+            "stopDate": "21 April 2020 05:00 uur",
+            "reason": "Oprit dicht. Van 20 April 2020 23:00 uur tot 21 April 2020 05:00 uur.",
+            "description": "Bij Muiden. Oprit dicht. Van 20 April 2020 23:00 uur tot 21 April 2020 05:00 uur.",
+            "events": [
+              {
+                "alertC": "471",
+                "text": "Oprit dicht"
+              }
+            ]
+          }
+        ],
+        "radars": [
+        ]
+      }
+    },
+    {
+      "road": "Road with 1 traffic jam, 1 roadwork & 1 radar !!!TODO no radars right now..!!!",
+      "roadType": "aWegen",
+      "events": {
+        "trafficJams": [
+          {
+            "msgNr": "237387638",
+            "from": "knp. Zaandam naar de A8 richting Beverwijk",
+            "fromLoc": {
+              "lat": 52.45778,
+              "lon": 4.83863
+            },
+            "to": "knp. Zaandam naar de A8 richting Beverwijk",
+            "toLoc": {
+              "lat": 52.45778,
+              "lon": 4.83863
+            },
+            "location": "A7 Hoorn richting Zaanstad",
+            "segStart": "Hoorn",
+            "segEnd": "Zaanstad",
+            "reason": "Wegwerkzaamheden. Verbindingsweg dicht.",
+            "description": "Bij knp. Zaandam naar de A8 richting Beverwijk. Wegwerkzaamheden. Verbindingsweg dicht.",
+            "events": [
+              {
+                "alertC": "701",
+                "text": "Wegwerkzaamheden"
+              },
+              {
+                "alertC": "478",
+                "text": "Verbindingsweg dicht"
+              }
+            ]
+          }
+        ],
+        "roadWorks": [
+          {
+            "msgNr": "237347015",
+            "from": "Deventer-Oost",
+            "fromLoc": {
+              "lat": 52.23694,
+              "lon": 6.21645
+            },
+            "to": "Deventer-Oost",
+            "toLoc": {
+              "lat": 52.23694,
+              "lon": 6.21645
+            },
+            "location": "A1 Apeldoorn richting Hengelo",
+            "segStart": "Apeldoorn",
+            "segEnd": "Hengelo",
+            "start": "2020-04-20T20:00:00",
+            "startDate": "20 April 2020 22:00 uur",
+            "stop": "2020-04-22T04:00:00",
+            "stopDate": "22 April 2020 06:00 uur",
+            "reason": "De afrit is dicht. Van 20 April 2020 22:00 uur tot 22 April 2020 06:00 uur.",
+            "description": "Bij Deventer-Oost. De afrit is dicht. Van 20 April 2020 22:00 uur tot 22 April 2020 06:00 uur.",
+            "events": [
+              {
+                "alertC": "407",
+                "text": "De afrit is dicht"
+              }
+            ]
+          }
+        ],
+        "radars": [
+        ]
+      }
+    },
+    {
+      "road": "Road with no traffic jam, no roadwork & no radar",
+      "roadType": "nWegen",
+      "events": {
+        "trafficJams": [],
+        "roadWorks": [],
+        "radars": []
+      }
+    }
+  ]
+}
