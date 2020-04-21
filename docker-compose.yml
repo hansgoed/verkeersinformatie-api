@@ -1,0 +1,28 @@
+version: "3.6"
+
+services:
+  nginx:
+    image: nginx
+    volumes:
+      - .:/app
+
+  php:
+    build: .docker/php
+    volumes:
+      - .:/app
+    depends_on:
+      - composer
+      - mysql
+
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: dev123
+    ports:
+      - 3306:3306
+
+  composer:
+    image: composer
+    volumes:
+      - .:/app
+    command: composer install
