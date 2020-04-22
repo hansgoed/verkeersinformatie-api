@@ -9,10 +9,6 @@ class RoadEntry
 {
     private string $road;
     private string $roadType;
-
-    /**
-     * @var EventsCollection
-     */
     private EventsCollection $events;
 
     /**
