@@ -10,7 +10,7 @@ interface EventInterface
     public const EVENT_TYPE_ROADWORK = 'roadwork';
     public const EVENT_TYPE_RADAR = 'radar';
 
-    public function getId(): string;
+    public function getId(): int;
 
     public function getFrom(): string;
 
