@@ -26,4 +26,19 @@ class Location
      * @ORM\Column
      */
     private string $longitude;
+
+    /**
+     * Location constructor.
+     * @param string $name
+     * @param string $latitude
+     * @param string $longitude
+     */
+    public function __construct(string $name, string $latitude, string $longitude)
+    {
+        $this->name = $name;
+        $this->latitude = $latitude;
+        $this->longitude = $longitude;
+    }
+
+
 }
