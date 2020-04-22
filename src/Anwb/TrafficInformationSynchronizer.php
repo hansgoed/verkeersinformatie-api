@@ -57,7 +57,7 @@ class TrafficInformationSynchronizer
 
         $currentEvents = [];
         foreach ($currentTrafficInformation->getRoads() as $roadEntry) {
-            $currentEvents = array_merge($currentEvents, $this->getFlatArrayWithEvents($roadEntry));
+            $currentEvents = array_replace($currentEvents, $this->getFlatArrayWithEvents($roadEntry));
         }
 
         foreach ($currentEvents as $eventArray) {

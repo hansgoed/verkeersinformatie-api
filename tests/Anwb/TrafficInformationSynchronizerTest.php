@@ -202,6 +202,60 @@ class TrafficInformationSynchronizerTest extends TestCase
         $this->trafficInformationSynchronizer->synchronize();
     }
 
+    /**
+     * Test that when ANWB events were saved before and are still present in the feed they don't get deleted or marked
+     * as resolved.
+     */
+    public function testExistingAnwbEventsAreUntouched()
+    {
+        $road = new Road('A2');
+
+        /** @var TrafficJam|MockObject $trafficJamMock */
+        $trafficJamMock = $this->getMockBuilder(TrafficJam::class)->disableOriginalConstructor()->getMock();
+        $trafficJamMock->method('getRoad')->willReturn($road);
+        $trafficJamMock->expects($this->never())->method('markResolved');
+
+        $this->anwbEventRepositoryMock->expects($this->once())
+            ->method('findAll')
+            ->willReturn(
+                [
+                    new AnwbEvent('123', $trafficJamMock),
+                    new AnwbEvent('456', $trafficJamMock),
+                ]
+            );
+
+        $this->anwbClientMock->expects($this->once())
+            ->method('getTrafficInformation')
+            ->willReturn(
+                new TrafficInformation(
+                    [
+                        new \App\Anwb\Response\Road(
+                            'A2',
+                            'aWeg',
+                            [
+                                new Segment(
+                                    'close',
+                                    'further',
+                                    [
+                                        $this->createEvent(123, TrafficJamEvent::class),
+                                        $this->createEvent(456, TrafficJamEvent::class),
+                                    ]
+                                ),
+                            ]
+                        ),
+                    ]
+                )
+            );
+
+        $this->anwbEventRepositoryMock->expects($this->never())
+            ->method('remove');
+
+        $this->anwbEventRepositoryMock->expects($this->never())
+            ->method('persist');
+
+        $this->trafficInformationSynchronizer->synchronize();
+    }
+
     private function createEvent(string $reference, string $eventTypeFQCN): EventInterface
     {
         $arguments = [
