@@ -7,15 +7,15 @@ namespace App\Anwb\Response;
  */
 class Location
 {
-    private string $lat;
-    private string $lon;
+    private float $lat;
+    private float $lon;
 
     /**
      * Location constructor.
      */
     public function __construct(
-        string $lat,
-        string $lon
+        float $lat,
+        float $lon
     ) {
         $this->lat = $lat;
         $this->lon = $lon;
