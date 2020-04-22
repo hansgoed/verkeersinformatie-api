@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Event;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -9,6 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Entity
  */
-class Roadwork extends Event
+class Roadwork extends AbstractEvent
 {
 }
