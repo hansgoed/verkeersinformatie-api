@@ -7,7 +7,7 @@ use App\Anwb\Response\Location;
 /**
  * Description of an event on the road.
  */
-abstract class AbstractEvent
+abstract class AbstractEvent implements EventInterface
 {
     protected string $msgNr;
     protected string $from;
