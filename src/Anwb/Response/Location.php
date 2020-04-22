@@ -20,4 +20,14 @@ class Location
         $this->lat = $lat;
         $this->lon = $lon;
     }
+
+    public function getLat(): float
+    {
+        return $this->lat;
+    }
+
+    public function getLon(): float
+    {
+        return $this->lon;
+    }
 }

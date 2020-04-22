@@ -42,4 +42,28 @@ class EventsCollection
         $this->roadWorks = $roadWorks;
         $this->radars = $radars;
     }
+
+    /**
+     * @return TrafficJamEvent[]
+     */
+    public function getTrafficJams(): array
+    {
+        return $this->trafficJams;
+    }
+
+    /**
+     * @return RoadworksEvent[]
+     */
+    public function getRoadWorks(): array
+    {
+        return $this->roadWorks;
+    }
+
+    /**
+     * @return RadarEvent[]
+     */
+    public function getRadars(): array
+    {
+        return $this->radars;
+    }
 }

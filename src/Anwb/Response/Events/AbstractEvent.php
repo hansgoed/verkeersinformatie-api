@@ -43,4 +43,54 @@ abstract class AbstractEvent implements EventInterface
         $this->reason = $reason;
         $this->description = $description;
     }
+
+    public function getMsgNr(): string
+    {
+        return $this->msgNr;
+    }
+
+    public function getFrom(): string
+    {
+        return $this->from;
+    }
+
+    public function getFromLoc(): Location
+    {
+        return $this->fromLoc;
+    }
+
+    public function getTo(): string
+    {
+        return $this->to;
+    }
+
+    public function getToLoc(): Location
+    {
+        return $this->toLoc;
+    }
+
+    public function getLocation(): string
+    {
+        return $this->location;
+    }
+
+    public function getSegStart(): string
+    {
+        return $this->segStart;
+    }
+
+    public function getSegEnd(): string
+    {
+        return $this->segEnd;
+    }
+
+    public function getReason(): string
+    {
+        return $this->reason;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
 }

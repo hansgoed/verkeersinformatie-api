@@ -21,4 +21,12 @@ class TrafficInformation
     {
         $this->roadEntries = $roadEntries;
     }
+
+    /**
+     * @return RoadEntry[]
+     */
+    public function getRoadEntries(): array
+    {
+        return $this->roadEntries;
+    }
 }

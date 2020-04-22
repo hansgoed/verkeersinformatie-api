@@ -27,4 +27,14 @@ class RoadEntry
         $this->roadType = $roadType;
         $this->events = $events;
     }
+
+    public function getRoad(): string
+    {
+        return $this->road;
+    }
+
+    public function getEvents(): EventsCollection
+    {
+        return $this->events;
+    }
 }
