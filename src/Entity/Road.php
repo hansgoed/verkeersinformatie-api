@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * A road.
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\RoadRepository")
  * @ORM\Table
  */
 class Road
