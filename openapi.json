@@ -1,0 +1,165 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Traffic Information API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/roads": {
+      "get": {
+        "description": "Get all known roads",
+        "responses": {
+          "200": {
+            "description": "A list of roads",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/road"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trafficJams": {
+      "get": {
+        "description": "Get all current traffic jams",
+        "responses": {
+          "200": {
+            "description": "A list of traffic jams",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/trafficJam"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/roadworks": {
+      "get": {
+        "description": "Get all current roadworks",
+        "responses": {
+          "200": {
+            "description": "A list of roadworks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/roadwork"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/radars": {
+      "get": {
+        "description": "Get all currently active radars",
+        "responses": {
+          "200": {
+            "description": "A list of radars",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/radar"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "road": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "A29"
+          },
+          "trafficJams": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "link": {
+                  "description": "Link to a traffic jam object",
+                  "example": "/trafficJams/123"
+                }
+              }
+            }
+          },
+          "roadworks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "link": {
+                  "description": "Link to a roadwork object",
+                  "example": "/roadworks/123"
+                }
+              }
+            }
+          },
+          "radars": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "link": {
+                  "description": "Link to a radar object",
+                  "example": "/radars/123"
+                }
+              }
+            }
+          }
+        }
+      },
+      "trafficJam": {
+        "type": "object",
+        "properties": {
+          "dummy": {
+            "type": "string",
+            "example": "TODO"
+          }
+        }
+      },
+      "roadwork": {
+        "type": "object",
+        "properties": {
+          "dummy": {
+            "type": "string",
+            "example": "TODO"
+          }
+        }
+      },
+      "radar": {
+        "type": "object",
+        "properties": {
+          "dummy": {
+            "type": "string",
+            "example": "TODO"
+          }
+        }
+      }
+    }
+  }
+}
