@@ -10,7 +10,7 @@ interface EventInterface
     public const EVENT_TYPE_ROADWORK = 'roadwork';
     public const EVENT_TYPE_RADAR = 'radar';
 
-    public function getMsgNr(): string;
+    public function getId(): string;
 
     public function getFrom(): string;
 
@@ -20,14 +20,6 @@ interface EventInterface
 
     public function getToLoc(): Location;
 
-    public function getLocation(): string;
-
-    public function getSegStart(): string;
-
-    public function getSegEnd(): string;
-
     public function getReason(): string;
-
-    public function getDescription(): string;
 
 }

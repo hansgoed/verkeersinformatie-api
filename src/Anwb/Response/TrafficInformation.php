@@ -8,25 +8,25 @@ namespace App\Anwb\Response;
 class TrafficInformation
 {
     /**
-     * @var RoadEntry[]
+     * @var Road[]
      */
-    private array $roadEntries;
+    private array $roads;
 
     /**
      * TrafficInformation constructor.
      *
-     * @param RoadEntry[] $roadEntries
+     * @param Road[] $roads
      */
-    public function __construct(array $roadEntries)
+    public function __construct(array $roads)
     {
-        $this->roadEntries = $roadEntries;
+        $this->roads = $roads;
     }
 
     /**
-     * @return RoadEntry[]
+     * @return Road[]
      */
-    public function getRoadEntries(): array
+    public function getRoads(): array
     {
-        return $this->roadEntries;
+        return $this->roads;
     }
 }

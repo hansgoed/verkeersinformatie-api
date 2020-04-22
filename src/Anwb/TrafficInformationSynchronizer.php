@@ -4,7 +4,6 @@ namespace App\Anwb;
 
 use App\Anwb\Response\Events\AbstractEvent;
 use App\Anwb\Response\Events\EventInterface as EventResponseInterface;
-use App\Anwb\Response\RoadEntry;
 use App\Entity\AnwbEvent;
 use App\Entity\Event\EventInterface;
 use App\Entity\Event\Roadwork;
@@ -57,7 +56,7 @@ class TrafficInformationSynchronizer
         $currentTrafficInformation = $this->anwbClient->getTrafficInformation();
 
         $currentEvents = [];
-        foreach ($currentTrafficInformation->getRoadEntries() as $roadEntry) {
+        foreach ($currentTrafficInformation->getRoads() as $roadEntry) {
             $currentEvents = array_merge($currentEvents, $this->getFlatArrayWithEvents($roadEntry));
         }
 
@@ -81,21 +80,28 @@ class TrafficInformationSynchronizer
      *
      * @return array[]
      */
-    private function getFlatArrayWithEvents(RoadEntry $roadEntry): array
+    private function getFlatArrayWithEvents(Response\Road $roadEntry): array
     {
         $road = $this->fetchOrCreateRoadEntity($roadEntry->getRoad());
 
         $events = [];
-        foreach ($roadEntry->getEvents()->getTrafficJams() as $trafficJam) {
-            $events[$trafficJam->getMsgNr()] = [
+        $trafficJams = [];
+        $roadworks = [];
+        foreach ($roadEntry->getSegments() as $segment) {
+            $trafficJams = array_merge($trafficJams, $segment->getJams());
+            $roadworks = array_merge($roadworks, $segment->getRoadworks());
+        }
+
+        foreach ($trafficJams as $trafficJam) {
+            $events[$trafficJam->getId()] = [
                 'road' => $road,
                 'event' => $trafficJam,
                 'type' => AbstractEvent::EVENT_TYPE_TRAFFIC_JAM,
             ];
         }
 
-        foreach ($roadEntry->getEvents()->getRoadWorks() as $roadwork) {
-            $events[$roadwork->getMsgNr()] = [
+        foreach ($roadworks as $roadwork) {
+            $events[$roadwork->getId()] = [
                 'road' => $road,
                 'event' => $roadwork,
                 'type' => AbstractEvent::EVENT_TYPE_ROADWORK,
@@ -131,7 +137,7 @@ class TrafficInformationSynchronizer
         $anwbEvents = $this->getAnwbEvents();
 
         foreach ($anwbEvents as $knownAnwbEvent) {
-            if ($knownAnwbEvent->getReference() === $anwbEvent->getMsgNr()) {
+            if ($knownAnwbEvent->getReference() === $anwbEvent->getId()) {
                 return $knownAnwbEvent->getEvent();
             }
         }
@@ -167,7 +173,7 @@ class TrafficInformationSynchronizer
         );
 
         $this->anwbEventRepository->persist(
-            new AnwbEvent($event->getMsgNr(), $eventEntity)
+            new AnwbEvent($event->getId(), $eventEntity)
         );
     }
 
@@ -190,7 +196,7 @@ class TrafficInformationSynchronizer
                 $event->getToLoc()->getLat(),
                 $event->getToLoc()->getLon()
             ),
-            $event->getDescription()
+            $event->getReason()
         );
     }
 

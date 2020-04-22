@@ -3,7 +3,7 @@
 namespace App\Anwb\Response;
 
 use App\Anwb\Response\Events\RadarEvent;
-use App\Anwb\Response\Events\RoadworksEvent;
+use App\Anwb\Response\Events\RoadworkEvent;
 use App\Anwb\Response\Events\TrafficJamEvent;
 
 /**
@@ -17,7 +17,7 @@ class EventsCollection
     private array $trafficJams;
 
     /**
-     * @var RoadworksEvent[]
+     * @var RoadworkEvent[]
      */
     private array $roadWorks;
 
@@ -30,7 +30,7 @@ class EventsCollection
      * EventsCollection constructor.
      *
      * @param TrafficJamEvent[] $trafficJams
-     * @param RoadworksEvent[] $roadWorks
+     * @param RoadworkEvent[] $roadWorks
      * @param RadarEvent[] $radars
      */
     public function __construct(
@@ -52,7 +52,7 @@ class EventsCollection
     }
 
     /**
-     * @return RoadworksEvent[]
+     * @return RoadworkEvent[]
      */
     public function getRoadWorks(): array
     {

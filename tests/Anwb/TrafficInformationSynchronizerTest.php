@@ -3,13 +3,12 @@
 namespace App\Tests\Anwb;
 
 use App\Anwb\Client;
-use App\Anwb\Response\Events\AbstractEvent;
+use App\Anwb\Response\Events\EventInterface;
 use App\Anwb\Response\Events\RadarEvent;
-use App\Anwb\Response\Events\RoadworksEvent;
+use App\Anwb\Response\Events\RoadworkEvent;
 use App\Anwb\Response\Events\TrafficJamEvent;
-use App\Anwb\Response\EventsCollection;
 use App\Anwb\Response\Location;
-use App\Anwb\Response\RoadEntry;
+use App\Anwb\Response\Segment;
 use App\Anwb\Response\TrafficInformation;
 use App\Anwb\TrafficInformationSynchronizer;
 use App\Entity\AnwbEvent;
@@ -93,36 +92,50 @@ class TrafficInformationSynchronizerTest extends TestCase
             ->willReturn(
                 new TrafficInformation(
                     [
-                        new RoadEntry(
-                            'A29', 'aWeg',
-                            new EventsCollection(
-                                [
-                                    $this->createEvent('foo1', TrafficJamEvent::class),
-                                    $this->createEvent('foo2', TrafficJamEvent::class),
-                                ],
-                                [
-                                    $this->createEvent('bar1', RoadworksEvent::class),
-                                    $this->createEvent('bar2', RoadworksEvent::class),
-                                ],
-                                [
-                                    $this->createEvent('baz1', RadarEvent::class),
-                                    $this->createEvent('baz2', RadarEvent::class),
-                                ]
-                            )
+                        new \App\Anwb\Response\Road(
+                            'A29',
+                            'aWeg',
+                            [
+                                new Segment(
+                                    'start',
+                                    'end',
+                                    [
+                                        $this->createEvent('foo1', TrafficJamEvent::class),
+                                        $this->createEvent('foo2', TrafficJamEvent::class),
+                                    ],
+                                    [
+                                        $this->createEvent('bar1', RoadworkEvent::class),
+                                        $this->createEvent('bar2', RoadworkEvent::class),
+                                    ],
+                                    [
+                                        $this->createEvent('baz1', RadarEvent::class),
+                                        $this->createEvent('baz2', RadarEvent::class),
+                                    ]
+                                ),
+                            ]
                         ),
-                        new RoadEntry(
-                            'N59', 'nWeg',
-                            new EventsCollection(
-                                [
-                                    $this->createEvent('foo3', TrafficJamEvent::class),
-                                ],
-                                [
-                                ],
-                                [
-                                    $this->createEvent('baz3', RadarEvent::class),
-                                    $this->createEvent('baz4', RadarEvent::class),
-                                ]
-                            )
+                        new \App\Anwb\Response\Road(
+                            'N59',
+                            'nWeg',
+                            [
+                                new Segment(
+                                    'start',
+                                    'end',
+                                    [
+                                        $this->createEvent('foo3', TrafficJamEvent::class),
+                                    ],
+                                ),
+                                new Segment(
+                                    'a little further',
+                                    'even further than that',
+                                    [],
+                                    [],
+                                    [
+                                        $this->createEvent('baz3', RadarEvent::class),
+                                        $this->createEvent('baz4', RadarEvent::class),
+                                    ]
+                                ),
+                            ]
                         ),
                     ]
                 )
@@ -189,7 +202,7 @@ class TrafficInformationSynchronizerTest extends TestCase
         $this->trafficInformationSynchronizer->synchronize();
     }
 
-    private function createEvent(string $reference, string $eventTypeFQCN): AbstractEvent
+    private function createEvent(string $reference, string $eventTypeFQCN): EventInterface
     {
         $arguments = [
             $reference,
@@ -197,14 +210,10 @@ class TrafficInformationSynchronizerTest extends TestCase
             new Location(123.45, 234.56),
             'there',
             new Location(124.56, 234.56),
-            'ergens halverwege',
-            'vlak voor halverwege',
-            'net na halverwege',
             'We hadden zin in een file',
-            'Omdat het kan',
         ];
 
-        if ($eventTypeFQCN === RoadworksEvent::class) {
+        if ($eventTypeFQCN === RoadworkEvent::class) {
             $arguments[] = new DateTimeImmutable();
             $arguments[] = new DateTimeImmutable();
         }
@@ -225,7 +234,7 @@ class TrafficInformationSynchronizerTest extends TestCase
                 $road,
                 new \App\Entity\Location('here', 123.45, 234.56),
                 new \App\Entity\Location('there', 124.56, 234.56),
-                'Omdat het kan'
+                'We hadden zin in een file'
             )
         );
     }
@@ -262,15 +271,18 @@ class TrafficInformationSynchronizerTest extends TestCase
             ->willReturn(
                 new TrafficInformation(
                     [
-                        new RoadEntry(
-                            'A29', 'aWeg',
-                            new EventsCollection(
-                                [
-                                    $this->createEvent('event-to-remain-the-same', TrafficJamEvent::class),
-                                ],
-                                [],
-                                []
-                            )
+                        new \App\Anwb\Response\Road(
+                            'A29',
+                            'aWeg',
+                            [
+                                new Segment(
+                                    'close',
+                                    'further',
+                                    [
+                                        $this->createEvent('event-to-remain-the-same', TrafficJamEvent::class),
+                                    ]
+                                ),
+                            ]
                         ),
                     ]
                 )

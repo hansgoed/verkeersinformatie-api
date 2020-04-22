@@ -9,44 +9,32 @@ use App\Anwb\Response\Location;
  */
 abstract class AbstractEvent implements EventInterface
 {
-    protected string $msgNr;
+    protected string $id;
     protected string $from;
     protected Location $fromLoc;
     protected string $to;
     protected Location $toLoc;
-    protected string $location;
-    protected string $segStart;
-    protected string $segEnd;
     protected string $reason;
-    protected string $description;
 
     public function __construct(
-        string $msgNr,
+        string $id,
         string $from,
         Location $fromLoc,
         string $to,
         Location $toLoc,
-        string $location,
-        string $segStart,
-        string $segEnd,
-        string $reason,
-        string $description
+        string $reason
     ) {
-        $this->msgNr = $msgNr;
+        $this->id = $id;
         $this->from = $from;
         $this->fromLoc = $fromLoc;
         $this->to = $to;
         $this->toLoc = $toLoc;
-        $this->location = $location;
-        $this->segStart = $segStart;
-        $this->segEnd = $segEnd;
         $this->reason = $reason;
-        $this->description = $description;
     }
 
-    public function getMsgNr(): string
+    public function getId(): string
     {
-        return $this->msgNr;
+        return $this->id;
     }
 
     public function getFrom(): string
@@ -69,28 +57,8 @@ abstract class AbstractEvent implements EventInterface
         return $this->toLoc;
     }
 
-    public function getLocation(): string
-    {
-        return $this->location;
-    }
-
-    public function getSegStart(): string
-    {
-        return $this->segStart;
-    }
-
-    public function getSegEnd(): string
-    {
-        return $this->segEnd;
-    }
-
     public function getReason(): string
     {
         return $this->reason;
-    }
-
-    public function getDescription(): string
-    {
-        return $this->description;
     }
 }

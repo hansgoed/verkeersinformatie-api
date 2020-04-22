@@ -38,7 +38,7 @@ class Client
     public function getTrafficInformation(): TrafficInformation
     {
         $response = $this->httpClient
-            ->request(Request::METHOD_GET, 'https://www.anwb.nl/feeds/gethf');
+            ->request(Request::METHOD_GET, 'https://api.anwb.nl/v1/incidents?apikey=QYUEE3fEcFD7SGMJ6E7QBCMzdQGqRkAi');
 
         /** @var TrafficInformation $trafficInformation */
         $trafficInformation = $this->serializer

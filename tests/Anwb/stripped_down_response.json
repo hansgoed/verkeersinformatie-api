@@ -1,206 +1,458 @@
 {
-  "dateTime": "20200420, 21:23",
-  "roadEntries": [
+  "copyright": "This website is owned by ANWB. The intellectual property rights, including the copyrights, in the material contained in this website and any ANWB trademarks and brands included in that material belong to ANWB and/or its licensors and/or its suppliers. No material, information, software, products or services obtained from this website may be modified, copied, licensed, reproduced, republished, sold, distributed, researched, recovered or otherwise disposed in any form, without the prior written approval of ANWB.",
+  "success": true,
+  "variables": {
+    "details": true,
+    "polylines": true,
+    "polylineBounds": true,
+    "totals": true,
+    "filterDetails": true,
+    "filterPolylines": true
+  },
+  "dateTime": "2020-04-22T17:01:00Z",
+  "roads": [
     {
-      "road": "Road with 2 traffic jams, 2 roadworks & 2 radars !!!TODO no radars right now..!!!",
-      "roadType": "aWegen",
-      "events": {
-        "trafficJams": [
-          {
-            "msgNr": "237387638",
-            "from": "knp. Zaandam naar de A8 richting Beverwijk",
-            "fromLoc": {
-              "lat": 52.45778,
-              "lon": 4.83863
-            },
-            "to": "knp. Zaandam naar de A8 richting Beverwijk",
-            "toLoc": {
-              "lat": 52.45778,
-              "lon": 4.83863
-            },
-            "location": "A7 Hoorn richting Zaanstad",
-            "segStart": "Hoorn",
-            "segEnd": "Zaanstad",
-            "reason": "Wegwerkzaamheden. Verbindingsweg dicht.",
-            "description": "Bij knp. Zaandam naar de A8 richting Beverwijk. Wegwerkzaamheden. Verbindingsweg dicht.",
-            "events": [
-              {
-                "alertC": "701",
-                "text": "Wegwerkzaamheden"
+      "road": "Road with 2 traffic jams, 2 roadworks & 2 radars",
+      "type": "aWegen",
+      "segments": [
+        {
+          "start": "start",
+          "end": "end",
+          "jams": [
+            {
+              "id": 237387638,
+              "road": "N570",
+              "segmentId": 6143,
+              "codeDirection": 1,
+              "type": "n",
+              "afrc": 4,
+              "category": "jams",
+              "label": "closed",
+              "incidentType": "road-closed",
+              "from": "knp. Zaandam naar de A8 richting Beverwijk",
+              "fromLoc": {
+                "lat": 52.45778,
+                "lon": 4.83863
               },
-              {
-                "alertC": "478",
-                "text": "Verbindingsweg dicht"
-              }
-            ]
-          },
-          {
-            "msgNr": "237387640",
-            "from": "knp. Prins Clausplein naar de A4 richting Amsterdam",
-            "fromLoc": {
-              "lat": 52.06418,
-              "lon": 4.36734
-            },
-            "to": "knp. Prins Clausplein naar de A4 richting Amsterdam",
-            "toLoc": {
-              "lat": 52.06418,
-              "lon": 4.36734
-            },
-            "location": "A12 Den Haag richting Utrecht",
-            "segStart": "Den Haag",
-            "segEnd": "Utrecht",
-            "reason": "Wegwerkzaamheden. Verbindingsweg dicht. Het verkeer wordt geadviseerd een andere route te kiezen",
-            "description": "Bij knp. Prins Clausplein naar de A4 richting Amsterdam. Wegwerkzaamheden. Verbindingsweg dicht. Het verkeer wordt geadviseerd een andere route te kiezen",
-            "events": [
-              {
-                "alertC": "701",
-                "text": "Wegwerkzaamheden"
+              "to": "knp. Zaandam naar de A8 richting Beverwijk",
+              "toLoc": {
+                "lat": 52.45778,
+                "lon": 4.83863
               },
-              {
-                "alertC": "478",
-                "text": "Verbindingsweg dicht"
-              }
-            ]
-          }
-        ],
-        "roadWorks": [
-          {
-            "msgNr": "237347015",
-            "from": "Deventer-Oost",
-            "fromLoc": {
-              "lat": 52.23694,
-              "lon": 6.21645
+              "polyline": "ugiwH{wyc@T{@DSjA{Dz@sClF{PfCcInBqG?Mf@}A~FaRHGfB{F|@uCdBuFHg@xEaOLK|@kChBcGL]jAqDBIf@aBX_Ar@aCl@qBXaANi@l@uCb@wBCs@b@gEVsDH}@JSNgBB_A?EBqCDcD?gD?iA@u@?MBq@BADEDGBIBM?MCKEKEEECEACA@cHC_F@wABy@FsANeBJ]XyAPaAZgBBa@`@kBl@aCx@yCf@}Ad@oAl@qAr@wA~AgChEoGd@}@PG\\k@Zm@Zo@Rs@Po@J_@FWn@iC^gBJm@RgAB]x@iErCkN|E}Ud@{BZ{AXqADSJ]DQX_AVs@Zs@Zq@b@w@V]PWbAuAdNwO^c@PEr@{@hBuBR[`@o@n@y@j@{@^o@Tc@r@qAr@sAf@aA|@cBn@iARa@^q@|@mAHOL]h@{Ap@oBBIX{@Rq@T}@jAoFReA?Wb@iCl@kGrDcb@jBgTH}@NSXsBj@gC?YN]Vi@HMLSDKZo@",
+              "bounds": {
+                "southWest": {
+                  "lat": 51.14031,
+                  "lon": 6.03534
+                },
+                "northEast": {
+                  "lat": 51.17067,
+                  "lon": 6.11914
+                }
+              },
+              "events": [
+                {
+                  "alertC": 921,
+                  "text": "Door een hevige brand"
+                },
+                {
+                  "alertC": 401,
+                  "text": "Dicht"
+                }
+              ],
+              "reason": "Wegwerkzaamheden. Verbindingsweg dicht."
             },
-            "to": "Deventer-Oost",
-            "toLoc": {
-              "lat": 52.23694,
-              "lon": 6.21645
+            {
+              "id": 237387640,
+              "road": "N570",
+              "segmentId": 6143,
+              "codeDirection": 1,
+              "type": "n",
+              "afrc": 4,
+              "category": "jams",
+              "label": "closed",
+              "incidentType": "road-closed",
+              "from": "knp. Prins Clausplein naar de A4 richting Amsterdam",
+              "fromLoc": {
+                "lat": 52.06418,
+                "lon": 4.36734
+              },
+              "to": "knp. Prins Clausplein naar de A4 richting Amsterdam",
+              "toLoc": {
+                "lat": 52.06418,
+                "lon": 4.36734
+              },
+              "polyline": "ugiwH{wyc@T{@DSjA{Dz@sClF{PfCcInBqG?Mf@}A~FaRHGfB{F|@uCdBuFHg@xEaOLK|@kChBcGL]jAqDBIf@aBX_Ar@aCl@qBXaANi@l@uCb@wBCs@b@gEVsDH}@JSNgBB_A?EBqCDcD?gD?iA@u@?MBq@BADEDGBIBM?MCKEKEEECEACA@cHC_F@wABy@FsANeBJ]XyAPaAZgBBa@`@kBl@aCx@yCf@}Ad@oAl@qAr@wA~AgChEoGd@}@PG\\k@Zm@Zo@Rs@Po@J_@FWn@iC^gBJm@RgAB]x@iErCkN|E}Ud@{BZ{AXqADSJ]DQX_AVs@Zs@Zq@b@w@V]PWbAuAdNwO^c@PEr@{@hBuBR[`@o@n@y@j@{@^o@Tc@r@qAr@sAf@aA|@cBn@iARa@^q@|@mAHOL]h@{Ap@oBBIX{@Rq@T}@jAoFReA?Wb@iCl@kGrDcb@jBgTH}@NSXsBj@gC?YN]Vi@HMLSDKZo@",
+              "bounds": {
+                "southWest": {
+                  "lat": 51.14031,
+                  "lon": 6.03534
+                },
+                "northEast": {
+                  "lat": 51.17067,
+                  "lon": 6.11914
+                }
+              },
+              "events": [
+                {
+                  "alertC": 921,
+                  "text": "Door een hevige brand"
+                },
+                {
+                  "alertC": 401,
+                  "text": "Dicht"
+                }
+              ],
+              "reason": "Wegwerkzaamheden. Verbindingsweg dicht. Het verkeer wordt geadviseerd een andere route te kiezen"
+            }
+          ],
+          "roadworks": [
+            {
+              "id": 237347015,
+              "road": "A1",
+              "segmentId": 3002,
+              "codeDirection": 1,
+              "type": "a",
+              "afrc": 0,
+              "category": "roadworks",
+              "label": "closed",
+              "incidentType": "road-closed",
+              "from": "Deventer-Oost",
+              "fromLoc": {
+                "lat": 52.23694,
+                "lon": 6.21645
+              },
+              "to": "Deventer-Oost",
+              "toLoc": {
+                "lat": 52.23694,
+                "lon": 6.21645
+              },
+              "bounds": {
+                "southWest": {
+                  "lat": 52.23652,
+                  "lon": 6.21322
+                },
+                "northEast": {
+                  "lat": 52.23771,
+                  "lon": 6.22861
+                }
+              },
+              "events": [
+                {
+                  "alertC": 475,
+                  "text": "De afrit is dicht"
+                }
+              ],
+              "start": "2020-04-20T20:00:00Z",
+              "stop": "2020-04-22T04:00:00Z",
+              "reason": "De afrit is dicht. Van 20 April 2020 22:00 uur tot 22 April 2020 06:00 uur."
             },
-            "location": "A1 Apeldoorn richting Hengelo",
-            "segStart": "Apeldoorn",
-            "segEnd": "Hengelo",
-            "start": "2020-04-20T20:00:00",
-            "startDate": "20 April 2020 22:00 uur",
-            "stop": "2020-04-22T04:00:00",
-            "stopDate": "22 April 2020 06:00 uur",
-            "reason": "De afrit is dicht. Van 20 April 2020 22:00 uur tot 22 April 2020 06:00 uur.",
-            "description": "Bij Deventer-Oost. De afrit is dicht. Van 20 April 2020 22:00 uur tot 22 April 2020 06:00 uur.",
-            "events": [
-              {
-                "alertC": "407",
-                "text": "De afrit is dicht"
-              }
-            ]
-          },
-          {
-            "msgNr": "237373006",
-            "from": "Muiden",
-            "fromLoc": {
-              "lat": 52.32795,
-              "lon": 5.0486
+            {
+              "id": 237373006,
+              "road": "A1",
+              "segmentId": 3002,
+              "codeDirection": 1,
+              "type": "a",
+              "afrc": 0,
+              "category": "roadworks",
+              "label": "closed",
+              "incidentType": "road-closed",
+              "from": "Muiden",
+              "fromLoc": {
+                "lat": 52.32795,
+                "lon": 5.0486
+              },
+              "to": "Muiden",
+              "toLoc": {
+                "lat": 52.32795,
+                "lon": 5.0486
+              },
+              "bounds": {
+                "southWest": {
+                  "lat": 52.23652,
+                  "lon": 6.21322
+                },
+                "northEast": {
+                  "lat": 52.23771,
+                  "lon": 6.22861
+                }
+              },
+              "events": [
+                {
+                  "alertC": 407,
+                  "text": "De afrit is dicht"
+                }
+              ],
+              "start": "2020-04-20T21:00:00Z",
+              "stop": "2020-04-21T03:00:00Z",
+              "reason": "Oprit dicht. Van 20 April 2020 23:00 uur tot 21 April 2020 05:00 uur."
+            }
+          ],
+          "radars": [
+            {
+              "id": 819351122,
+              "road": "A35",
+              "segmentId": 3283,
+              "codeDirection": 1,
+              "type": "a",
+              "afrc": 0,
+              "category": "radars",
+              "incidentType": "radar",
+              "from": "Enschede",
+              "fromLoc": {
+                "lat": 52.20062,
+                "lon": 6.88598
+              },
+              "to": "Enschede-West",
+              "toLoc": {
+                "lat": 52.20702,
+                "lon": 6.8235
+              },
+              "loc": {
+                "lat": 52.20135,
+                "lon": 6.87341
+              },
+              "HM": 70.2,
+              "bounds": {
+                "southWest": {
+                  "lat": 52.20045,
+                  "lon": 6.81494
+                },
+                "northEast": {
+                  "lat": 52.20964,
+                  "lon": 6.88841
+                }
+              },
+              "events": [
+                {
+                  "alertC": 3101,
+                  "text": "Snelheidscontrole"
+                }
+              ],
+              "reason": "Bij hectometerpaal 70.2."
             },
-            "to": "Muiden",
-            "toLoc": {
-              "lat": 52.32795,
-              "lon": 5.0486
-            },
-            "location": "A1 Amsterdam richting Amersfoort",
-            "segStart": "Amsterdam",
-            "segEnd": "Amersfoort",
-            "start": "2020-04-20T21:00:00",
-            "startDate": "20 April 2020 23:00 uur",
-            "stop": "2020-04-21T03:00:00",
-            "stopDate": "21 April 2020 05:00 uur",
-            "reason": "Oprit dicht. Van 20 April 2020 23:00 uur tot 21 April 2020 05:00 uur.",
-            "description": "Bij Muiden. Oprit dicht. Van 20 April 2020 23:00 uur tot 21 April 2020 05:00 uur.",
-            "events": [
-              {
-                "alertC": "471",
-                "text": "Oprit dicht"
-              }
-            ]
-          }
-        ],
-        "radars": [
-        ]
-      }
+            {
+              "id": 819351123,
+              "road": "A35",
+              "segmentId": 3283,
+              "codeDirection": 1,
+              "type": "a",
+              "afrc": 0,
+              "category": "radars",
+              "incidentType": "radar",
+              "from": "Enschede",
+              "fromLoc": {
+                "lat": 52.20062,
+                "lon": 6.88598
+              },
+              "to": "Enschede-West",
+              "toLoc": {
+                "lat": 52.20702,
+                "lon": 6.8235
+              },
+              "loc": {
+                "lat": 52.20135,
+                "lon": 6.87341
+              },
+              "HM": 70.2,
+              "bounds": {
+                "southWest": {
+                  "lat": 52.20045,
+                  "lon": 6.81494
+                },
+                "northEast": {
+                  "lat": 52.20964,
+                  "lon": 6.88841
+                }
+              },
+              "events": [
+                {
+                  "alertC": 3101,
+                  "text": "Snelheidscontrole"
+                }
+              ],
+              "reason": "Bij hectometerpaal 70.2."
+            }
+          ]
+        }
+      ]
     },
     {
-      "road": "Road with 1 traffic jam, 1 roadwork & 1 radar !!!TODO no radars right now..!!!",
-      "roadType": "aWegen",
-      "events": {
-        "trafficJams": [
-          {
-            "msgNr": "237387638",
-            "from": "knp. Zaandam naar de A8 richting Beverwijk",
-            "fromLoc": {
-              "lat": 52.45778,
-              "lon": 4.83863
-            },
-            "to": "knp. Zaandam naar de A8 richting Beverwijk",
-            "toLoc": {
-              "lat": 52.45778,
-              "lon": 4.83863
-            },
-            "location": "A7 Hoorn richting Zaanstad",
-            "segStart": "Hoorn",
-            "segEnd": "Zaanstad",
-            "reason": "Wegwerkzaamheden. Verbindingsweg dicht.",
-            "description": "Bij knp. Zaandam naar de A8 richting Beverwijk. Wegwerkzaamheden. Verbindingsweg dicht.",
-            "events": [
-              {
-                "alertC": "701",
-                "text": "Wegwerkzaamheden"
+      "road": "Road with 1 traffic jam, 1 roadwork & 1 radar divided in 2 segments",
+      "type": "a",
+      "segments": [
+        {
+          "start": "Almelo",
+          "end": "Enschede",
+          "jams": [
+            {
+              "id": 237387638,
+              "road": "N570",
+              "segmentId": 6143,
+              "codeDirection": 1,
+              "type": "n",
+              "afrc": 4,
+              "category": "jams",
+              "label": "closed",
+              "incidentType": "road-closed",
+              "from": "knp. Zaandam naar de A8 richting Beverwijk",
+              "fromLoc": {
+                "lat": 52.45778,
+                "lon": 4.83863
               },
-              {
-                "alertC": "478",
-                "text": "Verbindingsweg dicht"
-              }
-            ]
-          }
-        ],
-        "roadWorks": [
-          {
-            "msgNr": "237347015",
-            "from": "Deventer-Oost",
-            "fromLoc": {
-              "lat": 52.23694,
-              "lon": 6.21645
-            },
-            "to": "Deventer-Oost",
-            "toLoc": {
-              "lat": 52.23694,
-              "lon": 6.21645
-            },
-            "location": "A1 Apeldoorn richting Hengelo",
-            "segStart": "Apeldoorn",
-            "segEnd": "Hengelo",
-            "start": "2020-04-20T20:00:00",
-            "startDate": "20 April 2020 22:00 uur",
-            "stop": "2020-04-22T04:00:00",
-            "stopDate": "22 April 2020 06:00 uur",
-            "reason": "De afrit is dicht. Van 20 April 2020 22:00 uur tot 22 April 2020 06:00 uur.",
-            "description": "Bij Deventer-Oost. De afrit is dicht. Van 20 April 2020 22:00 uur tot 22 April 2020 06:00 uur.",
-            "events": [
-              {
-                "alertC": "407",
-                "text": "De afrit is dicht"
-              }
-            ]
-          }
-        ],
-        "radars": [
-        ]
-      }
+              "to": "knp. Zaandam naar de A8 richting Beverwijk",
+              "toLoc": {
+                "lat": 52.45778,
+                "lon": 4.83863
+              },
+              "polyline": "ugiwH{wyc@T{@DSjA{Dz@sClF{PfCcInBqG?Mf@}A~FaRHGfB{F|@uCdBuFHg@xEaOLK|@kChBcGL]jAqDBIf@aBX_Ar@aCl@qBXaANi@l@uCb@wBCs@b@gEVsDH}@JSNgBB_A?EBqCDcD?gD?iA@u@?MBq@BADEDGBIBM?MCKEKEEECEACA@cHC_F@wABy@FsANeBJ]XyAPaAZgBBa@`@kBl@aCx@yCf@}Ad@oAl@qAr@wA~AgChEoGd@}@PG\\k@Zm@Zo@Rs@Po@J_@FWn@iC^gBJm@RgAB]x@iErCkN|E}Ud@{BZ{AXqADSJ]DQX_AVs@Zs@Zq@b@w@V]PWbAuAdNwO^c@PEr@{@hBuBR[`@o@n@y@j@{@^o@Tc@r@qAr@sAf@aA|@cBn@iARa@^q@|@mAHOL]h@{Ap@oBBIX{@Rq@T}@jAoFReA?Wb@iCl@kGrDcb@jBgTH}@NSXsBj@gC?YN]Vi@HMLSDKZo@",
+              "bounds": {
+                "southWest": {
+                  "lat": 51.14031,
+                  "lon": 6.03534
+                },
+                "northEast": {
+                  "lat": 51.17067,
+                  "lon": 6.11914
+                }
+              },
+              "events": [
+                {
+                  "alertC": 921,
+                  "text": "Door een hevige brand"
+                },
+                {
+                  "alertC": 401,
+                  "text": "Dicht"
+                }
+              ],
+              "reason": "Wegwerkzaamheden. Verbindingsweg dicht."
+            }
+          ],
+          "radars": [
+            {
+              "id": 819351122,
+              "road": "A35",
+              "segmentId": 3283,
+              "codeDirection": 1,
+              "type": "a",
+              "afrc": 0,
+              "category": "radars",
+              "incidentType": "radar",
+              "from": "Enschede",
+              "fromLoc": {
+                "lat": 52.20062,
+                "lon": 6.88598
+              },
+              "to": "Enschede-West",
+              "toLoc": {
+                "lat": 52.20702,
+                "lon": 6.8235
+              },
+              "loc": {
+                "lat": 52.20135,
+                "lon": 6.87341
+              },
+              "HM": 70.2,
+              "bounds": {
+                "southWest": {
+                  "lat": 52.20045,
+                  "lon": 6.81494
+                },
+                "northEast": {
+                  "lat": 52.20964,
+                  "lon": 6.88841
+                }
+              },
+              "events": [
+                {
+                  "alertC": 3101,
+                  "text": "Snelheidscontrole"
+                }
+              ],
+              "reason": "Bij hectometerpaal 70.2."
+            }
+          ]
+        },
+        {
+          "start": "Enschede",
+          "end": "Almelo",
+          "roadworks": [
+            {
+              "id": 237347015,
+              "road": "A1",
+              "segmentId": 3002,
+              "codeDirection": 1,
+              "type": "a",
+              "afrc": 0,
+              "category": "roadworks",
+              "label": "closed",
+              "incidentType": "road-closed",
+              "from": "Deventer-Oost",
+              "fromLoc": {
+                "lat": 52.23694,
+                "lon": 6.21645
+              },
+              "to": "Deventer-Oost",
+              "toLoc": {
+                "lat": 52.23694,
+                "lon": 6.21645
+              },
+              "bounds": {
+                "southWest": {
+                  "lat": 52.23652,
+                  "lon": 6.21322
+                },
+                "northEast": {
+                  "lat": 52.23771,
+                  "lon": 6.22861
+                }
+              },
+              "events": [
+                {
+                  "alertC": 475,
+                  "text": "De afrit is dicht"
+                }
+              ],
+              "start": "2020-04-20T20:00:00Z",
+              "stop": "2020-04-22T04:00:00Z",
+              "reason": "De afrit is dicht. Van 20 April 2020 22:00 uur tot 22 April 2020 06:00 uur."
+            }
+          ]
+        }
+      ]
     },
     {
       "road": "Road with no traffic jam, no roadwork & no radar",
-      "roadType": "nWegen",
-      "events": {
-        "trafficJams": [],
-        "roadWorks": [],
-        "radars": []
-      }
+      "type": "nWegen",
+      "segments": [
+        {
+          "start": "Roermond",
+          "end": "Etsberg"
+        }
+      ]
     }
-  ]
+  ],
+  "totals": {
+    "a": {
+      "distance": 0,
+      "delay": 0,
+      "count": 0
+    },
+    "n": {
+      "distance": 0,
+      "delay": 0,
+      "count": 2
+    },
+    "other": {
+      "distance": 0,
+      "delay": 0,
+      "count": 0
+    },
+    "all": {
+      "distance": 0,
+      "delay": 0,
+      "count": 2
+    }
+  }
 }

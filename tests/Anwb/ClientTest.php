@@ -3,8 +3,8 @@
 namespace App\Tests\Anwb;
 
 use App\Anwb\Client;
-use App\Anwb\Response\EventsCollection;
-use App\Anwb\Response\RoadEntry;
+use App\Anwb\Response\Road;
+use App\Anwb\Response\Segment;
 use App\Anwb\Response\TrafficInformation;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -43,14 +43,18 @@ class ClientTest extends TestCase
         $client = new Client($mockHttpClient, $this->serializerMock);
 
         $dummyTrafficInformation = new TrafficInformation([
-            new RoadEntry(
+            new Road(
                 'a1',
                 'A weg',
-                new EventsCollection(
-                    [],
-                    [],
-                    []
-                )
+                [
+                    new Segment(
+                        'start',
+                        'end',
+                        [],
+                        [],
+                        []
+                    ),
+                ]
             )
         ]);
 
