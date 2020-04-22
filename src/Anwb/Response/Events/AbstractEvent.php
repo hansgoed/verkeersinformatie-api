@@ -9,15 +9,22 @@ use App\Anwb\Response\Location;
  */
 abstract class AbstractEvent implements EventInterface
 {
-    protected int $id;
+    /**
+     * @var int|string
+     */
+    protected $id;
+
     protected string $from;
     protected Location $fromLoc;
     protected string $to;
     protected Location $toLoc;
     protected string $reason;
 
+    /**
+     * @param int|string $id
+     */
     public function __construct(
-        int $id,
+        $id,
         string $from,
         Location $fromLoc,
         string $to,
@@ -32,7 +39,10 @@ abstract class AbstractEvent implements EventInterface
         $this->reason = $reason;
     }
 
-    public function getId(): int
+    /**
+     * @return int|string
+     */
+    public function getId()
     {
         return $this->id;
     }

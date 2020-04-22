@@ -13,8 +13,11 @@ class RoadworkEvent extends AbstractEvent
     private DateTimeInterface $start;
     private DateTimeInterface $stop;
 
+    /**
+     * @param int|string $id
+     */
     public function __construct(
-        int $id,
+        $id,
         string $from,
         Location $fromLoc,
         string $to,

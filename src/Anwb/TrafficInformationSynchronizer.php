@@ -137,7 +137,7 @@ class TrafficInformationSynchronizer
         $anwbEvents = $this->getAnwbEvents();
 
         foreach ($anwbEvents as $knownAnwbEvent) {
-            if ($knownAnwbEvent->getReference() === $anwbEvent->getId()) {
+            if ($knownAnwbEvent->getReference() == (string)$anwbEvent->getId()) {
                 return $knownAnwbEvent->getEvent();
             }
         }
