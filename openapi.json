@@ -222,37 +222,19 @@
           "TrafficJams": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "link": {
-                  "description": "Link to a traffic jam object",
-                  "example": "/trafficJams/123"
-                }
-              }
+              "$ref": "#/components/schemas/TrafficJam"
             }
           },
           "Roadworks": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "link": {
-                  "description": "Link to a roadwork object",
-                  "example": "/roadworks/123"
-                }
-              }
+              "$ref": "#/components/schemas/Roadwork"
             }
           },
           "Radars": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "link": {
-                  "description": "Link to a radar object",
-                  "example": "/radars/123"
-                }
-              }
+              "$ref": "#/components/schemas/Radar"
             }
           }
         }
@@ -261,7 +243,9 @@
         "type": "object",
         "properties": {
           "road": {
-            "$ref": "#/components/schemas/Road"
+            "type": "string",
+            "description": "Name of the road",
+            "example": "A29"
           },
           "description": {
             "nullable": true,
