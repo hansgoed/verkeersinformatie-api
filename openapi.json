@@ -209,16 +209,6 @@
             }
           }
         }
-      },
-      "ErrorResponse": {
-        "description": "Something went wrong",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            }
-          }
-        }
       }
     },
     "schemas": {
