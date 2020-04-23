@@ -257,30 +257,74 @@
           }
         }
       },
-      "TrafficJam": {
+      "TrafficEvent": {
         "type": "object",
         "properties": {
-          "dummy": {
+          "road": {
+            "$ref": "#/components/schemas/Road"
+          },
+          "description": {
+            "nullable": true,
+            "description": "The reason for the event or more information",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "When was this event added",
             "type": "string",
-            "example": "TODO"
+            "format": "date-time"
+          },
+          "resolved_at": {
+            "nullable": true,
+            "description": "When was this event marked as resolved.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "start_location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "end_location": {
+            "$ref": "#/components/schemas/Location"
           }
         }
+      },
+      "TrafficJam": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TrafficEvent"
+          }
+        ]
       },
       "Roadwork": {
         "type": "object",
-        "properties": {
-          "dummy": {
-            "type": "string",
-            "example": "TODO"
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TrafficEvent"
           }
-        }
+        ]
       },
       "Radar": {
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TrafficEvent"
+          }
+        ]
+      },
+      "Location": {
+        "type": "object",
         "properties": {
-          "dummy": {
+          "name": {
             "type": "string",
-            "example": "TODO"
+            "example": "knp. Zaandam naar de A8 richting Beverwijk"
+          },
+          "latitude": {
+            "type": "string",
+            "example": "52.0645"
+          },
+          "longitude": {
+            "type": "string",
+            "example": "4.37822"
           }
         }
       },
