@@ -4,7 +4,12 @@ services:
   nginx:
     image: nginx
     volumes:
+      - .docker/nginx/traffic-info.conf:/etc/nginx/conf.d/traffic-info.conf
       - .:/app
+    depends_on:
+      - php
+    ports:
+      - 80:80
 
   php:
     build: .docker/php
@@ -20,9 +25,14 @@ services:
       MYSQL_ROOT_PASSWORD: dev123
     ports:
       - 3306:3306
+    volumes:
+      - mysql-volume:/var/lib/mysql
 
   composer:
     image: composer
     volumes:
       - .:/app
     command: composer install
+
+volumes:
+  mysql-volume:
