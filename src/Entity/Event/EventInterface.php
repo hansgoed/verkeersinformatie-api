@@ -14,7 +14,7 @@ interface EventInterface
 
     public function getEndLocation(): Location;
 
-    public function getDescription(): string;
+    public function getDescription(): ?string;
 
     public function getCreatedAt(): DateTimeImmutable;
 

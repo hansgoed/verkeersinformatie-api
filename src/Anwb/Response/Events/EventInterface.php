@@ -23,6 +23,6 @@ interface EventInterface
 
     public function getToLoc(): Location;
 
-    public function getReason(): string;
+    public function getReason(): ?string;
 
 }

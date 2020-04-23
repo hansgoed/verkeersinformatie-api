@@ -41,9 +41,9 @@ abstract class AbstractEvent implements EventInterface
     protected Location $endLocation;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
-    protected string $description;
+    protected ?string $description;
 
     /**
      * @ORM\Column(type="datetime_immutable")
@@ -62,7 +62,7 @@ abstract class AbstractEvent implements EventInterface
         Road $road,
         Location $startLocation,
         Location $endLocation,
-        string $description,
+        ?string $description = null,
         ?DateTimeImmutable $resolvedAt = null
     ) {
         $this->road = $road;
@@ -88,7 +88,7 @@ abstract class AbstractEvent implements EventInterface
         return $this->endLocation;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }

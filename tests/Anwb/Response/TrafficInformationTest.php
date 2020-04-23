@@ -232,8 +232,67 @@ class TrafficInformationTest extends TestCase
                                 []
                             ),
                         ]
-                ),
-            ]),
+                    ),
+                ]
+            ),
+            $deserializedResponse
+        );
+    }
+
+    /**
+     * Test that when the reason property is missing from a traffic jam response a {@see TrafficJamEvent} is created
+     * with null as reason.
+     */
+    public function testDeserializeWithTrafficJamWithoutReason()
+    {
+        $phpDocExtractor = new PhpDocExtractor();
+        $normalizer = new ObjectNormalizer(null, null, null, $phpDocExtractor);
+
+        $serializer = new Serializer(
+            [
+                $normalizer,
+                new ArrayDenormalizer(),
+                new DateTimeNormalizer(),
+            ],
+            [
+                new JsonEncoder(),
+            ]
+        );
+
+        $realResponse = file_get_contents('tests/Anwb/response_with_traffic_jam_without_reason.json');
+        $deserializedResponse = $serializer->deserialize($realResponse, TrafficInformation::class, 'json');
+
+        $this->assertEquals(
+            new TrafficInformation(
+                [
+                    new Road(
+                        'Road with 1 traffic jam without reason',
+                        'aWegen',
+                        [
+                            new Segment(
+                                'start',
+                                'end',
+                                [
+                                    new TrafficJamEvent(
+                                        '237387638',
+                                        'knp. Zaandam naar de A8 richting Beverwijk',
+                                        new Location(
+                                            '52.45778',
+                                            '4.83863'
+                                        ),
+                                        'knp. Zaandam naar de A8 richting Beverwijk',
+                                        new Location(
+                                            '52.45778',
+                                            '4.83863'
+                                        ),
+                                        null
+                                    ),
+                                ]
+                            ),
+                        ]
+                    ),
+                ]
+            ),
             $deserializedResponse
         );
     }

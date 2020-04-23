@@ -18,7 +18,7 @@ abstract class AbstractEvent implements EventInterface
     protected Location $fromLoc;
     protected string $to;
     protected Location $toLoc;
-    protected string $reason;
+    protected ?string $reason;
 
     /**
      * @param int|string $id
@@ -29,7 +29,7 @@ abstract class AbstractEvent implements EventInterface
         Location $fromLoc,
         string $to,
         Location $toLoc,
-        string $reason
+        ?string $reason = null
     ) {
         $this->id = $id;
         $this->from = $from;
@@ -67,7 +67,7 @@ abstract class AbstractEvent implements EventInterface
         return $this->toLoc;
     }
 
-    public function getReason(): string
+    public function getReason(): ?string
     {
         return $this->reason;
     }
