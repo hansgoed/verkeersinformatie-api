@@ -16,51 +16,134 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/road"
+                    "$ref": "#/components/schemas/Road"
                   }
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/roads/{name}": {
+      "get": {
+        "description": "Get a specific road by its name",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "A29"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested road",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Road"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundResponse"
+          }
+        }
+      }
+    },
+    "/roads/{name}/traffic_jams": {
+      "get": {
+        "description": "Get all traffic jams for the specified road",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "A29"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/TrafficJams"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundResponse"
+          }
+        }
+      }
+    },
+    "/roads/{name}/roadworks": {
+      "get": {
+        "description": "Get all roadworks for the specified road",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "A29"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Roadworks"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundResponse"
+          }
+        }
+      }
+    },
+    "/roads/{name}/radars": {
+      "get": {
+        "description": "Get all radars for the specified road",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "A29"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Radars"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundResponse"
           }
         }
       }
     },
     "/trafficJams": {
       "get": {
-        "description": "Get all current traffic jams",
+        "description": "Get all traffic jams",
         "responses": {
           "200": {
-            "description": "A list of traffic jams",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/trafficJam"
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/TrafficJams"
           }
         }
       }
     },
     "/roadworks": {
       "get": {
-        "description": "Get all current roadworks",
+        "description": "Get all roadworks",
         "responses": {
           "200": {
-            "description": "A list of roadworks",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/roadwork"
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/Roadworks"
           }
         }
       }
@@ -70,32 +153,83 @@
         "description": "Get all currently active radars",
         "responses": {
           "200": {
-            "description": "A list of radars",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/radar"
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/Radars"
           }
         }
       }
     }
   },
   "components": {
+    "responses": {
+      "TrafficJams": {
+        "description": "A list of traffic jams",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/TrafficJam"
+              }
+            }
+          }
+        }
+      },
+      "Roadworks": {
+        "description": "A list of roadworks",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Roadwork"
+              }
+            }
+          }
+        }
+      },
+      "Radars": {
+        "description": "A list of radars",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Radar"
+              }
+            }
+          }
+        }
+      },
+      "NotFoundResponse": {
+        "description": "The requested resource doesn't exist",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "ErrorResponse": {
+        "description": "Something went wrong",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
     "schemas": {
-      "road": {
+      "Road": {
         "type": "object",
         "properties": {
           "name": {
             "type": "string",
             "example": "A29"
           },
-          "trafficJams": {
+          "TrafficJams": {
             "type": "array",
             "items": {
               "type": "object",
@@ -107,7 +241,7 @@
               }
             }
           },
-          "roadworks": {
+          "Roadworks": {
             "type": "array",
             "items": {
               "type": "object",
@@ -119,7 +253,7 @@
               }
             }
           },
-          "radars": {
+          "Radars": {
             "type": "array",
             "items": {
               "type": "object",
@@ -133,7 +267,7 @@
           }
         }
       },
-      "trafficJam": {
+      "TrafficJam": {
         "type": "object",
         "properties": {
           "dummy": {
@@ -142,7 +276,7 @@
           }
         }
       },
-      "roadwork": {
+      "Roadwork": {
         "type": "object",
         "properties": {
           "dummy": {
@@ -151,12 +285,21 @@
           }
         }
       },
-      "radar": {
+      "Radar": {
         "type": "object",
         "properties": {
           "dummy": {
             "type": "string",
             "example": "TODO"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "description": "Description of the problem",
+            "type": "string"
           }
         }
       }
