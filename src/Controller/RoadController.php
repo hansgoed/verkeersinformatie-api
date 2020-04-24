@@ -2,46 +2,28 @@
 
 namespace App\Controller;
 
-use App\Entity\Event\EventInterface;
 use App\Entity\Road;
 use App\Repository\RoadRepository;
-use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 
-class RoadController
+class RoadController extends AbstractApiController
 {
-    const SERIALIZATION_CONTEXT_ROAD = 'road_context';
-    const SERIALIZATION_CONTEXT_EVENT = 'event_context';
-
-    /**
-     * @var RoadRepository
-     */
-    private RoadRepository $roadRepository;
-
     /**
      * @var SerializerInterface
      */
     private SerializerInterface $serializer;
-
-    public function __construct(
-        RoadRepository $roadRepository,
-        SerializerInterface $serializer
-    ) {
-        $this->serializer = $serializer;
-        $this->roadRepository = $roadRepository;
-    }
 
     /**
      * @Route("/roads")
      *
      * @return JsonResponse
      */
-    public function list(): JsonResponse
+    public function list(RoadRepository $roadRepository): JsonResponse
     {
-        $roads = $this->roadRepository->findAll();
+        $roads = $roadRepository->findAll();
 
         $normalizedRoads = $this->serializer->normalize(
             $roads,
@@ -102,21 +84,5 @@ class RoadController
         $normalizedRadars = $this->normalizeEvents($road->getRadars());
 
         return new JsonResponse($normalizedRadars);
-    }
-
-    /**
-     * @param EventInterface[]|Collection $events
-     */
-    private function normalizeEvents(Collection $events)
-    {
-        return $this->serializer->normalize(
-            $events,
-            null,
-            [
-                AbstractObjectNormalizer::GROUPS => [
-                    self::SERIALIZATION_CONTEXT_EVENT,
-                ],
-            ]
-        );
     }
 }
