@@ -6,9 +6,8 @@ use App\Entity\Event\AbstractEvent;
 use DateTime;
 use DateTimeInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
 
-class EventRepository extends ServiceEntityRepository
+abstract class AbstractEventRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

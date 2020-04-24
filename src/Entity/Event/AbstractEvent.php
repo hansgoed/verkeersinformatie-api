@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 /**
  * Something that happens on the road.
  *
- * @ORM\Entity(repositoryClass="App\Repository\EventRepository")
+ * @ORM\Entity(repositoryClass="AbstractEventRepository")
  * @ORM\Table(name="event")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="type", type="string")
