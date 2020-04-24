@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 abstract class AbstractApiController implements ApiControllerInterface
 {
-    private SerializerInterface $serializer;
+    protected SerializerInterface $serializer;
 
     public function __construct(SerializerInterface $serializer)
     {

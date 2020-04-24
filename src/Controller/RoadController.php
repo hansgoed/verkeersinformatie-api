@@ -12,11 +12,6 @@ use Symfony\Component\Serializer\SerializerInterface;
 class RoadController extends AbstractApiController
 {
     /**
-     * @var SerializerInterface
-     */
-    private SerializerInterface $serializer;
-
-    /**
      * @Route("/roads")
      *
      * @return JsonResponse
