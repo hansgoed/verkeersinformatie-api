@@ -128,7 +128,7 @@
         }
       }
     },
-    "/trafficJams": {
+    "/traffic_jams": {
       "get": {
         "description": "Get all traffic jams",
         "responses": {
