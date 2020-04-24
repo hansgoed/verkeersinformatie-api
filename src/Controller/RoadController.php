@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Event\EventInterface;
 use App\Entity\Road;
 use App\Repository\RoadRepository;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
@@ -11,6 +13,9 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class RoadController
 {
+    const SERIALIZATION_CONTEXT_ROAD = 'road_context';
+    const SERIALIZATION_CONTEXT_EVENT = 'event_context';
+
     /**
      * @var RoadRepository
      */
@@ -42,9 +47,9 @@ class RoadController
             $roads,
             null,
             [
-                AbstractObjectNormalizer::CIRCULAR_REFERENCE_HANDLER => function (Road $object) {
-                    return $object->getName();
-                },
+                AbstractObjectNormalizer::GROUPS => [
+                    self::SERIALIZATION_CONTEXT_ROAD,
+                ],
             ]
         );
 
@@ -60,9 +65,9 @@ class RoadController
             $road,
             null,
             [
-                AbstractObjectNormalizer::CIRCULAR_REFERENCE_HANDLER => function (Road $object) {
-                    return $object->getName();
-                },
+                AbstractObjectNormalizer::GROUPS => [
+                    self::SERIALIZATION_CONTEXT_ROAD,
+                ],
             ]
         );
 

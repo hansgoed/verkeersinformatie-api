@@ -252,21 +252,21 @@
             "description": "The reason for the event or more information",
             "type": "string"
           },
-          "created_at": {
+          "createdAt": {
             "description": "When was this event added",
             "type": "string",
             "format": "date-time"
           },
-          "resolved_at": {
+          "resolvedAt": {
             "nullable": true,
             "description": "When was this event marked as resolved.",
             "type": "string",
             "format": "date-time"
           },
-          "start_location": {
+          "startLocation": {
             "$ref": "#/components/schemas/Location"
           },
-          "end_location": {
+          "endLocation": {
             "$ref": "#/components/schemas/Location"
           }
         }

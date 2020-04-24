@@ -6,6 +6,8 @@ use App\Entity\Location;
 use App\Entity\Road;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
  * Something that happens on the road.
@@ -78,26 +80,57 @@ abstract class AbstractEvent implements EventInterface
         return $this->road;
     }
 
+    /**
+     * @Groups("event_context")
+     * @Groups("road_context")
+     *
+     * @SerializedName("road")
+     */
+    public function getRoadName(): string
+    {
+        return $this->road->getName();
+    }
+
+    /**
+     * @Groups("road_context")
+     * @Groups("event_context")
+     */
     public function getStartLocation(): Location
     {
         return $this->startLocation;
     }
 
+    /**
+     * @Groups("road_context")
+     * @Groups("event_context")
+     */
     public function getEndLocation(): Location
     {
         return $this->endLocation;
     }
 
+    /**
+     * @Groups("road_context")
+     * @Groups("event_context")
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+     * @Groups("road_context")
+     * @Groups("event_context")
+     */
     public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;
     }
 
+    /**
+     * @Groups("road_context")
+     * @Groups("event_context")
+     */
     public function getResolvedAt(): ?DateTimeImmutable
     {
         return $this->resolvedAt;

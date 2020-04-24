@@ -6,6 +6,7 @@ use App\Entity\Event\Roadwork;
 use App\Entity\Event\TrafficJam;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * A road.
@@ -56,6 +57,8 @@ class Road
     }
 
     /**
+     * @Groups("road_context")
+     *
      * @return string
      */
     public function getName(): string
@@ -64,6 +67,8 @@ class Road
     }
 
     /**
+     * @Groups("road_context")
+     *
      * @return TrafficJam[]|Collection
      */
     public function getTrafficJams(): Collection
@@ -72,6 +77,8 @@ class Road
     }
 
     /**
+     * @Groups("road_context")
+     *
      * @return Roadwork[]|Collection
      */
     public function getRoadworks(): Collection
@@ -80,6 +87,8 @@ class Road
     }
 
     /**
+     * @Groups("road_context")
+     *
      * @return array
      */
     public function getRadars(): array
