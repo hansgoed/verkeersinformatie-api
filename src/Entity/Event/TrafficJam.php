@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * A traffic jam.
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\TrafficJamRepository")
  */
 class TrafficJam extends AbstractEvent
 {
