@@ -7,6 +7,7 @@
         "ext-iconv": "*",
         "ext-pdo_mysql": "*",
         "doctrine/doctrine-migrations-bundle": "^2.1",
+        "nelmio/cors-bundle": "^2.0",
         "sensio/framework-extra-bundle": "^5.5",
         "symfony/console": "5.0.*",
         "symfony/dotenv": "5.0.*",
