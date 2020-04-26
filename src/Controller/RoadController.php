@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Road;
 use App\Repository\RoadRepository;
-use DateTime;
 use DateTimeInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -109,21 +108,5 @@ class RoadController extends AbstractApiController
     private function applyDateTimeFilterToRoad(Road $road, DateTimeInterface $dateTime)
     {
         $road->setDateTimeFilter($dateTime);
-    }
-
-    private function getDateTimeFromRequest(Request $request): DateTimeInterface
-    {
-        $dateTimeParameter = $request->query->get('datetime');
-        if ($dateTimeParameter === null) {
-            return new DateTime();
-        }
-
-        $dateTime = \DateTimeImmutable::createFromFormat(DATE_RFC3339, $dateTimeParameter);
-
-        if ($dateTime === false) {
-            throw new \InvalidArgumentException('Datetime parameter ("' . $dateTimeParameter . '") is not in the RFC3339 format');
-        }
-
-        return $dateTime;
     }
 }
