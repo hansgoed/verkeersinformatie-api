@@ -4,10 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Road;
 use App\Repository\RoadRepository;
+use DateTime;
+use DateTimeInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
-use Symfony\Component\Serializer\SerializerInterface;
 
 class RoadController extends AbstractApiController
 {
@@ -16,9 +19,19 @@ class RoadController extends AbstractApiController
      *
      * @return JsonResponse
      */
-    public function list(RoadRepository $roadRepository): JsonResponse
+    public function list(RoadRepository $roadRepository, Request $request): JsonResponse
     {
-        $roads = $roadRepository->findAllWithCurrentEvents();
+        try {
+            $dateTime = $this->getDateTimeFromRequest($request);
+        }
+        catch (\InvalidArgumentException $exception) {
+            return new JsonResponse(
+                ['message' => $exception->getMessage()],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        $roads = $roadRepository->findAllWithEvents($dateTime);
 
         $normalizedRoads = $this->serializer->normalize(
             $roads,
@@ -36,8 +49,20 @@ class RoadController extends AbstractApiController
     /**
      * @Route("/roads/{name}")
      */
-    public function show(Road $road): JsonResponse
+    public function show(Road $road, Request $request): JsonResponse
     {
+        try {
+            $dateTime = $this->getDateTimeFromRequest($request);
+        }
+        catch (\InvalidArgumentException $exception) {
+            return new JsonResponse(
+                ['message' => $exception->getMessage()],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        $this->applyDateTimeFilterToRoad($road, $dateTime);
+
         $normalizedRoad = $this->serializer->normalize(
             $road,
             null,
@@ -79,5 +104,26 @@ class RoadController extends AbstractApiController
         $normalizedRadars = $this->normalizeEvents($road->getRadars());
 
         return new JsonResponse($normalizedRadars);
+    }
+
+    private function applyDateTimeFilterToRoad(Road $road, DateTimeInterface $dateTime)
+    {
+        $road->setDateTimeFilter($dateTime);
+    }
+
+    private function getDateTimeFromRequest(Request $request): DateTimeInterface
+    {
+        $dateTimeParameter = $request->query->get('datetime');
+        if ($dateTimeParameter === null) {
+            return new DateTime();
+        }
+
+        $dateTime = \DateTimeImmutable::createFromFormat(DATE_RFC3339, $dateTimeParameter);
+
+        if ($dateTime === false) {
+            throw new \InvalidArgumentException('Datetime parameter ("' . $dateTimeParameter . '") is not in the RFC3339 format');
+        }
+
+        return $dateTime;
     }
 }

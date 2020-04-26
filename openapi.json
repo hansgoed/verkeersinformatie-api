@@ -8,6 +8,19 @@
     "/roads": {
       "get": {
         "description": "Get all known roads",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "datetime",
+            "description": "Filter the events to a given date",
+            "example": "2020-04-26T14:36:29.098Z",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "A list of roads",
@@ -21,6 +34,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestResponse"
           }
         }
       }
@@ -52,6 +68,9 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFoundResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestResponse"
           }
         }
       }
@@ -202,6 +221,16 @@
       },
       "NotFoundResponse": {
         "description": "The requested resource doesn't exist",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "BadRequestResponse": {
+        "description": "One of the given parameters is incorrectly formatted",
         "content": {
           "application/json": {
             "schema": {

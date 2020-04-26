@@ -5,6 +5,7 @@ namespace App\Entity\Event;
 use App\Entity\Location;
 use App\Entity\Road;
 use DateTimeImmutable;
+use DateTimeInterface;
 
 interface EventInterface
 {
@@ -19,6 +20,8 @@ interface EventInterface
     public function getCreatedAt(): DateTimeImmutable;
 
     public function getResolvedAt(): ?DateTimeImmutable;
+
+    public function isActual(DateTimeInterface $dateTime): bool;
 
     /**
      * Mark the event as resolved.

@@ -19,23 +19,11 @@ class RoadRepository extends ServiceEntityRepository
     }
 
     /**
-     * Find all roads and join all current events.
-     *
-     * @return Road[]
-     */
-    public function findAllWithCurrentEvents(): array
-    {
-        $dateTime = new DateTime();
-
-        return $this->findAllWithEventsFilteredByDate($dateTime);
-    }
-
-    /**
      * Find all roads with it's event relations filtered on actual at given datetime.
      *
      * @return Road[]
      */
-    private function findAllWithEventsFilteredByDate(DateTime $dateTime): array
+    public function findAllWithEvents(DateTimeInterface $dateTime = null): array
     {
         $queryBuilder = $this->createQueryBuilder('road');
         $this->joinEventFilteredByDate('trafficJams', 'traffic_jams', $queryBuilder, $dateTime);
@@ -48,8 +36,13 @@ class RoadRepository extends ServiceEntityRepository
     /**
      * Join an event type filtered by date.
      */
-    private function joinEventFilteredByDate(string $relationName, string $alias, QueryBuilder $queryBuilder, DateTimeInterface $dateTime)
+    private function joinEventFilteredByDate(string $relationName, string $alias, QueryBuilder $queryBuilder, ?DateTimeInterface $dateTime = null)
     {
+        if ($dateTime === null) {
+            $queryBuilder->leftJoin('road.' . $relationName, $alias);
+            return;
+        }
+
         $queryBuilder
             ->addSelect($alias)
             ->leftJoin('road.' . $relationName, $alias, Join::WITH,

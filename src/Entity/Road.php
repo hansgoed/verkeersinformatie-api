@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
+use App\Entity\Event\EventInterface;
 use App\Entity\Event\Roadwork;
 use App\Entity\Event\TrafficJam;
+use DateTimeInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -47,6 +49,8 @@ class Road
      */
     private array $radars = [];
 
+    private ?DateTimeInterface $dateFilter = null;
+
     /**
      * Road constructor.
      */
@@ -73,7 +77,13 @@ class Road
      */
     public function getTrafficJams(): Collection
     {
-        return $this->trafficJams;
+        if ($this->dateFilter === null) {
+            return $this->trafficJams;
+        }
+
+        return $this->trafficJams->filter(function (EventInterface $event) {
+            return $event->isActual($this->dateFilter);
+        });
     }
 
     /**
@@ -83,7 +93,13 @@ class Road
      */
     public function getRoadworks(): Collection
     {
-        return $this->roadworks;
+        if ($this->dateFilter === null) {
+            return $this->roadworks;
+        }
+
+        return $this->roadworks->filter(function (EventInterface $event) {
+            return $event->isActual($this->dateFilter);
+        });
     }
 
     /**
@@ -94,5 +110,10 @@ class Road
     public function getRadars(): array
     {
         return $this->radars;
+    }
+
+    public function setDateTimeFilter(DateTimeInterface $dateTime)
+    {
+        $this->dateFilter = $dateTime;
     }
 }

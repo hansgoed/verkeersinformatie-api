@@ -5,6 +5,7 @@ namespace App\Entity\Event;
 use App\Entity\Location;
 use App\Entity\Road;
 use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
@@ -139,5 +140,28 @@ abstract class AbstractEvent implements EventInterface
     public function markResolved(): void
     {
         $this->resolvedAt = new DateTimeImmutable();
+    }
+
+    /**
+     * Was the event current on the given DateTime?
+     */
+    public function isActual(DateTimeInterface $dateTime): bool
+    {
+        // Was it created?
+        if ($this->getCreatedAt() > $dateTime) {
+            return false;
+        }
+
+        // Is it still current?
+        if ($this->getResolvedAt() === null) {
+            return true;
+        }
+
+        // Is the entire event in the past?
+        if ($this->getResolvedAt() < $dateTime) {
+            return false;
+        }
+
+        return true;
     }
 }
