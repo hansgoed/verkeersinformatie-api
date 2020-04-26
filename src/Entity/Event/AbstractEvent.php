@@ -76,6 +76,17 @@ abstract class AbstractEvent implements EventInterface
         $this->resolvedAt = $resolvedAt;
     }
 
+    /**
+     * @Groups("road_context")
+     * @Groups("event_context")
+     *
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
     public function getRoad(): Road
     {
         return $this->road;

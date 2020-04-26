@@ -271,6 +271,10 @@
       "TrafficEvent": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for an event"
+          },
           "road": {
             "type": "string",
             "description": "Name of the road",

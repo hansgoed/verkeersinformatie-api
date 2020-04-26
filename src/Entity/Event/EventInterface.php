@@ -9,6 +9,8 @@ use DateTimeInterface;
 
 interface EventInterface
 {
+    public function getId(): int;
+
     public function getRoad(): Road;
 
     public function getStartLocation(): Location;
