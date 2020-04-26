@@ -18,7 +18,7 @@ class RoadController extends AbstractApiController
      */
     public function list(RoadRepository $roadRepository): JsonResponse
     {
-        $roads = $roadRepository->findAll();
+        $roads = $roadRepository->findAllWithCurrentEvents();
 
         $normalizedRoads = $this->serializer->normalize(
             $roads,
