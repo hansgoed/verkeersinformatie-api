@@ -4,7 +4,8 @@ This is an API to fetch traffic information for all "A" and "N" roads in the Net
 The API has the following features:
 * Information about traffic jams
 * Information about roadworks
-* Information about speed cameras.
+* Information about speed cameras
+* Historical data
 
 ## API documentation
 The documentation is in OpenAPI format. Copy the contents of [openapi.json]() in the root of the project to an editor e.g. 
