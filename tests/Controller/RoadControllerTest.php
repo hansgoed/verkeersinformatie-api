@@ -39,7 +39,7 @@ class RoadControllerTest extends TestCase
      *
      * @dataProvider validQueryParametersProvider
      */
-    public function testShow(array $queryBag)
+    public function testShow(array $queryParameters)
     {
         $road = new Road('A2');
 
@@ -50,7 +50,7 @@ class RoadControllerTest extends TestCase
             )
             ->willReturn(['asdf']);
 
-        $request = new Request($queryBag);
+        $request = new Request($queryParameters);
 
         $expectedResponse = new JsonResponse(
             ['asdf'],
