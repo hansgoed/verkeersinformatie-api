@@ -78,8 +78,20 @@ class RoadController extends AbstractApiController
     /**
      * @Route("/roads/{name}/traffic_jams")
      */
-    public function showTrafficJams(Road $road)
+    public function showTrafficJams(Road $road, Request $request)
     {
+        try {
+            $dateTime = $this->getDateTimeFromRequest($request);
+        }
+        catch (\InvalidArgumentException $exception) {
+            return $this->createResponse(
+                ['message' => $exception->getMessage()],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        $this->applyDateTimeFilterToRoad($road, $dateTime);
+
         $normalizedTrafficJams = $this->normalizeEvents($road->getTrafficJams());
 
         return $this->createResponse($normalizedTrafficJams);
@@ -88,8 +100,20 @@ class RoadController extends AbstractApiController
     /**
      * @Route("/roads/{name}/roadworks")
      */
-    public function showRoadworks(Road $road)
+    public function showRoadworks(Road $road, Request $request)
     {
+        try {
+            $dateTime = $this->getDateTimeFromRequest($request);
+        }
+        catch (\InvalidArgumentException $exception) {
+            return $this->createResponse(
+                ['message' => $exception->getMessage()],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        $this->applyDateTimeFilterToRoad($road, $dateTime);
+
         $normalizedRoadworks = $this->normalizeEvents($road->getRoadworks());
 
         return $this->createResponse($normalizedRoadworks);
@@ -98,8 +122,20 @@ class RoadController extends AbstractApiController
     /**
      * @Route("/roads/{name}/radars")
      */
-    public function showRadars(Road $road)
+    public function showRadars(Road $road, Request $request)
     {
+        try {
+            $dateTime = $this->getDateTimeFromRequest($request);
+        }
+        catch (\InvalidArgumentException $exception) {
+            return $this->createResponse(
+                ['message' => $exception->getMessage()],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        $this->applyDateTimeFilterToRoad($road, $dateTime);
+
         $normalizedRadars = $this->normalizeEvents($road->getRadars());
 
         return $this->createResponse($normalizedRadars);
