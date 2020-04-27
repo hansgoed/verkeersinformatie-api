@@ -49,7 +49,7 @@ class Road
      */
     private array $radars = [];
 
-    private ?DateTimeInterface $dateFilter = null;
+    private ?DateTimeInterface $dateTimeFilter = null;
 
     /**
      * Road constructor.
@@ -77,12 +77,12 @@ class Road
      */
     public function getTrafficJams(): Collection
     {
-        if ($this->dateFilter === null) {
+        if ($this->dateTimeFilter === null) {
             return $this->trafficJams;
         }
 
         return $this->trafficJams->filter(function (EventInterface $event) {
-            return $event->isActual($this->dateFilter);
+            return $event->isActual($this->dateTimeFilter);
         });
     }
 
@@ -93,12 +93,12 @@ class Road
      */
     public function getRoadworks(): Collection
     {
-        if ($this->dateFilter === null) {
+        if ($this->dateTimeFilter === null) {
             return $this->roadworks;
         }
 
         return $this->roadworks->filter(function (EventInterface $event) {
-            return $event->isActual($this->dateFilter);
+            return $event->isActual($this->dateTimeFilter);
         });
     }
 
@@ -114,6 +114,6 @@ class Road
 
     public function setDateTimeFilter(DateTimeInterface $dateTime)
     {
-        $this->dateFilter = $dateTime;
+        $this->dateTimeFilter = $dateTime;
     }
 }
