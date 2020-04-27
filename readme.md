@@ -8,8 +8,8 @@ The API has the following features:
 * Historical data
 
 ## API documentation
-The documentation is in OpenAPI format. Copy the contents of [openapi.json]() in the root of the project to an editor e.g. 
-[editor.swagger.io]().
+The documentation is in OpenAPI format. Copy the contents of [openapi.json](openapi.json) in the root of the project to an editor e.g. 
+[editor.swagger.io](https://editor.swagger.io).
 
 ## Getting started
 This project ships with a docker-compose file. 
