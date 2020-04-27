@@ -47,7 +47,7 @@ abstract class AbstractApiController implements ApiControllerInterface
     {
         $dateTimeParameter = $request->query->get('datetime');
         if ($dateTimeParameter === null) {
-            return new DateTime();
+            return DateTime::createFromFormat('U', time());
         }
 
         $dateTime = \DateTimeImmutable::createFromFormat(DATE_RFC3339_EXTENDED, $dateTimeParameter);
