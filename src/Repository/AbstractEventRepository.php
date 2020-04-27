@@ -2,23 +2,13 @@
 
 namespace App\Repository;
 
-use App\Entity\Event\AbstractEvent;
-use DateTime;
 use DateTimeInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
-abstract class AbstractEventRepository extends ServiceEntityRepository
+abstract class AbstractEventRepository extends ServiceEntityRepository implements EventRepositoryInterface
 {
     /**
-     * @return AbstractEvent[]
-     */
-    public function getCurrentEvents(): array
-    {
-        return $this->getActiveEventsForDateTime(new DateTime());
-    }
-
-    /**
-     * @return AbstractEvent[]
+     * {@inheritdoc}
      */
     public function getActiveEventsForDateTime(DateTimeInterface $dateTime): array
     {
