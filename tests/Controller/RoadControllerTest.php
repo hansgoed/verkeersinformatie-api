@@ -118,6 +118,55 @@ class RoadControllerTest extends TestCase
     }
 
     /**
+     * Test that {@see RoadController::showRoadworks} fetches traffic jams from road object, serializes them and
+     * returns them.
+     *
+     * @dataProvider validQueryParametersProvider
+     */
+    public function testShowRoadworks(array $queryParameters) {
+        /** @var Road|MockObject $roadMock */
+        $roadMock = $this->getMockBuilder(Road::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $roadworks = new ArrayCollection([
+            'a',
+            'b',
+        ]);
+
+        $roadMock->expects($this->once())
+            ->method('getRoadworks')
+            ->willReturn($roadworks);
+
+        $normalizedRoadworks = ['hi' => 'there'];
+        $this->serializerMock->expects($this->once())
+            ->method('normalize')
+            ->with(
+                $roadworks,
+                null,
+                [
+                    'groups' => [
+                        'event_context',
+                    ],
+                ]
+            )
+            ->willReturn($normalizedRoadworks);
+
+        $request = new Request($queryParameters);
+        $response = $this->roadController->showRoadworks($roadMock, $request);
+
+        $expectedResponse = new JsonResponse(
+            $normalizedRoadworks,
+            200,
+            [
+                'Access-Control-Allow-Origin' => '*'
+            ]
+        );
+
+        $this->assertEquals($expectedResponse, $response);
+    }
+
+    /**
      * DataProvider that provides parameter arrays with query parameters. They should all be valid.
      *
      * @return string[]
