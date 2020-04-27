@@ -36,8 +36,10 @@ class RoadControllerTest extends TestCase
 
     /**
      * Test that {@see RoadController::show} serializes the road and returns it as a JsonResponse.
+     *
+     * @dataProvider validQueryParametersProvider
      */
-    public function testShow()
+    public function testShow(array $queryBag)
     {
         $road = new Road('A2');
 
@@ -48,7 +50,7 @@ class RoadControllerTest extends TestCase
             )
             ->willReturn(['asdf']);
 
-        $request = new Request([]);
+        $request = new Request($queryBag);
 
         $expectedResponse = new JsonResponse(
             ['asdf'],
@@ -61,5 +63,22 @@ class RoadControllerTest extends TestCase
         $response = $this->roadController->show($road, $request);
 
         $this->assertEquals($expectedResponse, $response);
+    }
+
+    /**
+     * DataProvider that provides parameter arrays with query parameters. They should all be valid.
+     *
+     * @return string[]
+     */
+    public function validQueryParametersProvider()
+    {
+        return [
+            'empty bag' => [[]],
+            'valid datetime' => [
+                [
+                    'datetime' => '2020-04-27T12:46:23.000-04:00'
+                ]
+            ],
+        ];
     }
 }
