@@ -2,9 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\AbstractEventRepository;
-use App\Repository\RoadworkRepository;
-use App\Repository\TrafficJamRepository;
+use App\Repository\EventRepositoryInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +17,7 @@ class EventController extends AbstractApiController
     /**
      * @Route("/traffic_jams")
      */
-    public function showTrafficJams(TrafficJamRepository $trafficJamRepository, Request $request): JsonResponse
+    public function showTrafficJams(EventRepositoryInterface $trafficJamRepository, Request $request): JsonResponse
     {
         return $this->getEventResponse($trafficJamRepository, $request);
     }
@@ -27,7 +25,7 @@ class EventController extends AbstractApiController
     /**
      * @Route("/roadworks")
      */
-    public function showRoadworks(RoadworkRepository $roadworkRepository, Request $request): JsonResponse
+    public function showRoadworks(EventRepositoryInterface $roadworkRepository, Request $request): JsonResponse
     {
         return $this->getEventResponse($roadworkRepository, $request);
     }
@@ -35,7 +33,7 @@ class EventController extends AbstractApiController
     /**
      * Collect the events from the repository & return a response that is completely ready to show the client.
      */
-    private function getEventResponse(AbstractEventRepository $eventRepository, Request $request)
+    private function getEventResponse(EventRepositoryInterface $eventRepository, Request $request)
     {
         try {
             $dateTime = $this->getDateTimeFromRequest($request);
