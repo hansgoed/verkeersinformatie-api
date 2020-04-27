@@ -3,8 +3,9 @@
 namespace App\Tests\Controller;
 
 use App\Controller\EventController;
-use App\Repository\AbstractEventRepository;
+use App\Entity\Event\TrafficJam;
 use App\Repository\RoadworkRepository;
+use App\Repository\TrafficJamRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -39,16 +40,14 @@ class EventControllerTest extends TestCase
     }
 
     /**
-     * Test that showEvents fetches Events and returns them.
-     *
-     * @dataProvider ShowEventMethodNamesProvider
+     * Test that {@see EventController::showTrafficJams} fetches {@see TrafficJam}s and returns them.
      */
-    public function testShowXEventsFetchesXEventsAndReturnsThem($methodName)
+    public function testShowTrafficJamEventsFetchesTrafficJamsAndReturnsThem()
     {
         /**
-         * @var AbstractEventRepository|MockObject $eventRepositoryMock
+         * @var TrafficJamRepository|MockObject $trafficJamRepositoryMock
          */
-        $eventRepositoryMock = $this->getMockBuilder(AbstractEventRepository::class)
+        $trafficJamRepositoryMock = $this->getMockBuilder(TrafficJamRepository::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -66,7 +65,7 @@ class EventControllerTest extends TestCase
 
         $currentDate = DateTime::createFromFormat('U', time());
 
-        $eventRepositoryMock->expects($this->once())
+        $trafficJamRepositoryMock->expects($this->once())
             ->method('getActiveEventsForDateTime')
             ->with($currentDate)
         ->willReturn($fakeData);
@@ -83,7 +82,59 @@ class EventControllerTest extends TestCase
                 ]
             )->willReturn($normalizedFakeData);
 
-        $response = $this->eventController->$methodName($eventRepositoryMock, $requestMock);
+        $response = $this->eventController->showTrafficJams($trafficJamRepositoryMock, $requestMock);
+        $this->assertEquals(
+            new JsonResponse($normalizedFakeData, 200, [
+                'Access-Control-Allow-Origin' => '*'
+            ]),
+            $response
+        );
+    }
+
+    /**
+     * Test that {@see EventController::showRoadworks} fetches {@see Roadwork}s and returns them.
+     */
+    public function testShowRoadworkEventsFetchesRoadworksAndReturnsThem()
+    {
+        /**
+         * @var RoadworkRepository|MockObject $roadworkRepositoryMock
+         */
+        $roadworkRepositoryMock = $this->getMockBuilder(RoadworkRepository::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        /**
+         * @var Request|MockObject $requestMock
+         */
+        $requestMock = $this->getMockBuilder(Request::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $requestMock->query = new ParameterBag();
+
+        $fakeData = ['asdf', 'ghjk', 'l;'];
+        $normalizedFakeData = ['fake' => 'data'];
+
+        $currentDate = DateTime::createFromFormat('U', time());
+
+        $roadworkRepositoryMock->expects($this->once())
+            ->method('getActiveEventsForDateTime')
+            ->with($currentDate)
+            ->willReturn($fakeData);
+
+        $this->serializerMock->expects($this->once())
+            ->method('normalize')
+            ->with(
+                new ArrayCollection($fakeData),
+                null,
+                [
+                    'groups' => [
+                        'event_context'
+                    ]
+                ]
+            )->willReturn($normalizedFakeData);
+
+        $response = $this->eventController->showRoadworks($roadworkRepositoryMock, $requestMock);
         $this->assertEquals(
             new JsonResponse($normalizedFakeData, 200, [
                 'Access-Control-Allow-Origin' => '*'
