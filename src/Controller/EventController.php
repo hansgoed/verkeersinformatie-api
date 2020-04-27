@@ -41,7 +41,7 @@ class EventController extends AbstractApiController
             $dateTime = $this->getDateTimeFromRequest($request);
         }
         catch (\InvalidArgumentException $exception) {
-            return new JsonResponse(
+            return $this->createResponse(
                 ['message' => $exception->getMessage()],
                 Response::HTTP_BAD_REQUEST
             );
@@ -51,6 +51,6 @@ class EventController extends AbstractApiController
 
         $normalizedEvents = $this->normalizeEvents($currentEvents);
 
-        return new JsonResponse($normalizedEvents);
+        return $this->createResponse($normalizedEvents);
     }
 }
