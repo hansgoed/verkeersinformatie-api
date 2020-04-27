@@ -25,7 +25,7 @@ On first run, all containers will be downloaded and initialized before the appli
 
 
 * Open your favorite mysql editor
-* Create a connection to localhost:3306
+* Create a connection to localhost:3306 (the password for `root` is `dev123`)
 * Create a new schema with the name `traffic_information`
 * Run `docker-compose run php /app/bin/console doctrine:migrations:migrate`
 
