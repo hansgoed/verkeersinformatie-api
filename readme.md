@@ -29,7 +29,7 @@ On first run, all containers will be downloaded and initialized before the appli
 * Create a new schema with the name `traffic_information`
 * Run `docker-compose run php /app/bin/console doctrine:migrations:migrate`
 
-Your API is ready!
+Your API is ready and available on [http://trafficinfo.localhost](http://trafficinfo.localhost)!
 
 ### Importing data
 Your API does not have data yet. You can run a command that fetches the data from the ANWB.
